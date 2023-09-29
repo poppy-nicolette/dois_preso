@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root
+      {
+        --box-side : min( 25vmin, 320px ) ;
+      }
+      
+      img
+      {
+        background : white ;
+        border : none ;
+        height : var( --box-side ) ;
+        object-fit : contain ;
+        width : var( --box-side ) ;
+      }
+      html * {
+        font-size: 16px;
+        line-height: 1.625;
+        color: #2020131;
+        font-family: Nunito, sans-serif;
+      }
+      svg.markmap {
+        width: 100%;
+        height: 100vh;
+      }
+    </style>
+    <title>DOIs and their complex world</title>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.15.2"></script>
+  </head>
+  <body>
+    <p>Poppy Riddle, Department of Information Science, QSS Lab & Crossref Technical Support Specialist<br>
+      pnriddle@dal.ca<br>
+    September 29, 2023</p>
+    <img align = "left" src="logos.png" alt="dalhousie and crossref logo" style="height: 100%; image-rendering: pixelated;">
+
+    <div class="markmap">
+      <script type="text/template">
+        ---
+        markmap:
+          maxWidth: 400
+          colorFreezeLevel: 5
+          initialExpandLevel: 0
+          embedAssets: true
+          duration: 400
+          zoom: true
+        ---
+
+        # DOIs and their complex world
+
+        ## what is a DOI?
+        ### <object data="handle.png" width="300" height="75"> </object>
+        ### [the DOI Handbook](https://www.doi.org/doi-handbook/HTML/)
+        ### different doi prefixes
+        ### bits that DOIs should have and shoudn't have
+          - [UTF-8 encoding](https://en.wikipedia.org/wiki/UTF-8)
+          - it should be meaningless
+        ### the handle system
+          - [www.handle.net](https://www.handle.net/)
+          - [CNRI website](http://www.cnri.reston.va.us/index.html)
+
+        ## Registration agencies
+        ### [Crossref](https://www.crossref.org/)<object data="crossref-logo-100.svg" width="75" height="75"> </object>
+          #### <object data="crossref_wheel.png" width="400" height="300"> </object>
+        ### [Medra](https://www.medra.org/)
+        ### [DataCite](https://datacite.org/)
+        ### [Publications Office of the EU](https://op.europa.eu/en/home)
+        ### [Korean DOI Center](https://www.doi.or.kr/)
+        ### [Japan Link Center](https://japanlinkcenter.org/top/english.html)
+        ### [Chinese National Knowledge Infrastructure](https://oversea.cnki.net/index/)
+        ### [Chinese DOI](http://dx.chinadoi.cn/)
+        ### [Airiti](http://www.airiti.com/en/page_doi.html)
+        ### [BSI](https://identify.bsigroup.com/)
+        ### [Entertainment Identifier Registry](https://www.eidr.org/)
+        ### [Human & Digital](https://www.handidentity.com/)
+
+        ## the DOI lifecycle
+         - the handle registry gives out prefixes
+         - the RA's assign prefixes to new clients
+         - clients/publishers create new suffixes 
+         - publishers push metadata with suffix to RA
+         - RA registers full DOI as persistent data
+         - RA stores publisher metadata with DOI
+         - RA pushes complete DOI to the Handle system (CNRI)
+         - published article has DOI with resolver
+         - when searched/clicked, the DOI resolves through the RA to the location
+
+        ## How do we access this?
+        ### REST APIs
+        #### [Crossref documentation](https://api.crossref.org/swagger-ui/index.html#)
+        #### [works](https://api.crossref.org/works/10.1145%2F3576840.3578309)
+        -
+            ```
+            https://api.crossref.org/works/10.1145%2F3576840.3578309
+            ```
+        #### [works with polite pool](https://api.crossref.org/works/10.1145%2F3576840.3578309?mailto=yourmail@dal.ca)
+        -
+            ```
+            https://api.crossref.org/works/10.1145%2F3576840.3578309?mailto=yourmail@dal.ca
+            ```
+        #### [get all works for a prefix](https://api.crossref.org/prefixes/10.11138/works?select=DOI,title,URL)
+        -
+            ```
+            https://api.crossref.org/prefixes/10.11138/works?select=DOI,title,URL
+            ```
+        #### [agency check](https://api.crossref.org/works/10.1145/3576840.3578309/agency) 
+        -
+            ```
+            https://api.crossref.org/works/10.1145/3576840.3578309/agency
+            ```
+
+        ## what do I do with it?
+          ### its the same data that many services are using
+          - [OpenAlex](https://alpha.openalex.org/works)
+          - [LitMaps](https://www.litmaps.com/)
+          - [Connected Papers](https://www.connectedpapers.com/)
+          - [Citation Gecko](https://www.citationgecko.com/)
+          - [Scite.ai](https://scite.ai/)
+          - [Google Scholar](https://scholar.google.com/)
+          - Clarivate/WoS
+          - Elsevier/SciVal
+
+        ## how am I a part of this?
+          ### metadata quality
+          - dead links
+          - incorrect resolution
+          - incorrect metadata
+          ### check
+          - [doi.org](https://dx.doi.org/)
+          - see REST APIs
+          ### report
+          - [doi.org report](https://dx.doi.org/)
+
+      </script>
+    </div>
+  </body>
+</html>
